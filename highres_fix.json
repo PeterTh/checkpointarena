@@ -1,0 +1,186 @@
+{
+  "3": {
+    "inputs": {
+      "seed": 42,
+      "steps": 30,
+      "cfg": 8.0,
+      "sampler_name": "dpmpp_sde",
+      "scheduler": "karras",
+      "denoise": 1.0,
+      "model": [
+        "4",
+        0
+      ],
+      "positive": [
+        "16",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "4": {
+    "inputs": {
+      "ckpt_name": "aZovyaPhotoreal_v1Ultra.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "5": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "batch_size": 6
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "7": {
+    "inputs": {
+      "text": "embedding:EasyNegative",
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "14": {
+    "inputs": {
+      "vae_name": "vae-ft-mse-840000-ema-pruned.safetensors"
+    },
+    "class_type": "VAELoader"
+  },
+  "15": {
+    "inputs": {
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "PreviewImage"
+  },
+  "16": {
+    "inputs": {
+      "text": "portrait\nphoto, high quality, 4k",
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "18": {
+    "inputs": {
+      "upscale_model": [
+        "19",
+        0
+      ],
+      "image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel"
+  },
+  "19": {
+    "inputs": {
+      "model_name": "ESRGAN_4x.pth"
+    },
+    "class_type": "UpscaleModelLoader"
+  },
+  "21": {
+    "inputs": {
+      "upscale_method": "area",
+      "width": 1024,
+      "height": 1024,
+      "crop": "disabled",
+      "image": [
+        "18",
+        0
+      ]
+    },
+    "class_type": "ImageScale"
+  },
+  "22": {
+    "inputs": {
+      "seed": 42,
+      "steps": 30,
+      "cfg": 8.0,
+      "sampler_name": "dpmpp_sde",
+      "scheduler": "karras",
+      "denoise": 0.5,
+      "model": [
+        "4",
+        0
+      ],
+      "positive": [
+        "16",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "23",
+        0
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "23": {
+    "inputs": {
+      "pixels": [
+        "21",
+        0
+      ],
+      "vae": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "VAEEncode"
+  },
+  "24": {
+    "inputs": {
+      "samples": [
+        "22",
+        0
+      ],
+      "vae": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "26": {
+    "inputs": {
+      "filename_prefix": "fn",
+      "images": [
+        "24",
+        0
+      ]
+    },
+    "class_type": "SaveImage"
+  }
+}
