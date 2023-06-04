@@ -145,6 +145,15 @@ for checkpoint_data, prompt_data in product(checkpoints, prompts):
 
     print("-----")
 
-# Storing the results in a JSON file
+# store the results in a JSON file
 with open('results.json', 'w') as file:
     json.dump(results, file)
+
+# convert any new pngs to avif
+repo_dir = os.getcwd()
+os.chdir(output_dir)
+os.system('npx avif --input="*.png" --quality 85 --effort 5')
+
+# copy them to the repo
+for aviffn in glob.glob("*.avif"):
+    shutil.copy(aviffn, os.path.join(repo_dir, "avif"))
