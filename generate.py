@@ -5,6 +5,7 @@ import shutil
 import time
 from itertools import product
 from urllib import request, parse
+from subprocess import Popen
 
 output_dir = "C:/dev/ai/ComfyUI/output"
 
@@ -149,11 +150,43 @@ for checkpoint_data, prompt_data in product(checkpoints, prompts):
 with open('results.json', 'w') as file:
     json.dump(results, file)
 
-# convert any new pngs to avif
 repo_dir = os.getcwd()
-os.chdir(output_dir)
-os.system('npx avif --input="*.png" --quality 85 --effort 5')
 
-# copy them to the repo
-for aviffn in glob.glob("*.avif"):
-    shutil.copy(aviffn, os.path.join(repo_dir, "avif"))
+def convert_to_avif_and_copy(quality, target_path):
+    print("avif conversion ...")
+    os.system('npx avif --input="*.png" --quality {} --effort 5'.format(quality))
+    print("copy ...")    
+    os.makedirs(target_path, exist_ok=True)
+    for aviffn in glob.glob("*.avif"):
+        shutil.copy(aviffn, target_path)
+
+# convert any new full-size pngs to avif and copy to repo
+FULL_AVIF_QUALITY=85
+os.chdir(output_dir)
+avif_repo_dir = os.path.join(repo_dir, "avif")
+convert_to_avif_and_copy(FULL_AVIF_QUALITY, avif_repo_dir)
+
+# generate thumbnails
+THUMBNAIL_AVIF_QUALITY=65
+THUMBNAIL_SIZE=256
+THUMBNAIL_DIR='thumb'
+PARALLELISM=16
+print("thumbnails:", end='')
+# this would be 3 lines in Ruby
+pnglist = glob.glob("*.png")
+for i in range(0, len(pnglist), PARALLELISM):
+    chunk = pnglist[i:i+PARALLELISM]
+    procs = []
+    for pngfn in chunk:
+        target = os.path.join(THUMBNAIL_DIR, pngfn)
+        if not os.path.exists(target):
+            procs.append(Popen('magick {0} -resize {1}x{1} {2}'.format(pngfn, THUMBNAIL_SIZE, target)))
+    for p in procs:
+        p.wait()
+    print(".", end='', flush=True)
+print("")
+
+# convert any new thumbnail pngs to avif and copy to repo
+os.chdir(THUMBNAIL_DIR)
+repo_thumb_dir = os.path.join(avif_repo_dir, THUMBNAIL_DIR)
+convert_to_avif_and_copy(THUMBNAIL_AVIF_QUALITY, repo_thumb_dir)
