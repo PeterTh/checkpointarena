@@ -21,8 +21,14 @@ def queue_prompt(prompt):
 
 json_prompt = json.loads(prompt_text)
 
+def get_pos_prompt():
+    return json_prompt["16"]["inputs"]["text"]
+
 def set_pos_prompt(text):
     json_prompt["16"]["inputs"]["text"] = text
+
+def get_neg_prompt():
+    return json_prompt["7"]["inputs"]["text"]
 
 def set_neg_prompt(text):
     json_prompt["7"]["inputs"]["text"] = text
@@ -62,6 +68,7 @@ checkpoints = [
     ('hrl32_hrl32', 'hrl32', 'photo', 'https://civitai.com/models/8616?modelVersionId=16369'),
     ('icbinpICantBelieveIts_v8', 'icbinpv8', 'photo', 'https://civitai.com/models/28059?modelVersionId=83527'),
     ('majicmixRealistic_v5', 'majicrealv5', 'photo', 'https://civitai.com/models/43331?modelVersionId=82446'),
+    ('majicmixRealistic_v6', 'majicrealv6', 'photo', 'https://civitai.com/models/43331?modelVersionId=94640'),
     ('realisticVision_v20', 'realvisv20', 'photo', 'https://civitai.com/models/4201?modelVersionId=29460'),
     ('reliberate_v10', 'reliberatev10', 'photo', 'https://civitai.com/models/79754/reliberate'),
     ('urpmv13', 'urpmv13', 'photo', 'https://civitai.com/models/2661?modelVersionId=15640'),
@@ -88,12 +95,15 @@ checkpoints = [
     ('AOM3A1B', 'aom3a1b', 'anime', 'https://civitai.com/models/9942?modelVersionId=17233'),
     ('AOM3A2', 'aom3a2', 'anime', 'https://civitai.com/models/9942?modelVersionId=11812'),
     ('AOM3A3', 'aom3a3', 'anime', 'https://civitai.com/models/9942?modelVersionId=11811'),
+    ('breakdomain_I2428','breakdomaini2428','anime','https://civitai.com/models/50520?modelVersionId=96424'),
     ('cetusMix_whalefall', 'cetuswhale', 'anime', 'https://civitai.com/models/6755?modelVersionId=36936'),
     ('CounterfeitV30_v30', 'counterfv30', 'anime', 'https://civitai.com/models/4468?modelVersionId=57618'),
+    ('darkSushiMixMix_225D', 'darksushi225d', 'anime', 'https://civitai.com/models/24779?modelVersionId=93208'),
     ('hassaku_v11', 'hassakuv11', 'anime', 'https://civitai.com/models/2583?modelVersionId=37521'),
     ('hassakuHentaiModel_v12', 'hassakuv12', 'anime', 'https://civitai.com/models/2583?modelVersionId=62528'),
     ('hm_grapefruitv41', 'grapefruitv41', 'anime', 'https://civitai.com/models/24383?modelVersionId=29179'),
     ('meinamix_meinaV9', 'meinav9', 'anime', 'https://civitai.com/models/7240?modelVersionId=46137'),
+    ('meinamix_meinaV10', 'meinav10', 'anime', 'https://civitai.com/models/7240?modelVersionId=80511'),
     ('nyanMix_230303Absurd2', 'nyan230303a2', 'anime', 'https://civitai.com/models/14373?modelVersionId=18151'),
     ('nyanMix_230303Normal', 'nyan230303n', 'anime', 'https://civitai.com/models/14373?modelVersionId=17818'),
     ('tmndMix_tmndMixIVPruned', 'tmndmixiv', 'anime', 'https://civitai.com/models/27259?modelVersionId=88859'),
@@ -103,25 +113,35 @@ extra_prompt_mapping = {
     "other": ", high quality",
     "photo": ", photo, high quality, 4k",
 }
+sfw_options = [True, False]
+sfw_extra_neg_prompt = ", nsfw, naked, nude"
 
 results = []
+default_neg_prompt = get_neg_prompt()
 
-for checkpoint_data, prompt_data in product(checkpoints, prompts):
+for checkpoint_data, prompt_data, sfw in product(checkpoints, prompts, sfw_options):
     checkpoint, checkpoint_id, category, url = checkpoint_data
     prompt, prompt_id = prompt_data
 
     pos_prompt_string = "({}:1.1){}".format(prompt, extra_prompt_mapping[category])
-    print(pos_prompt_string)
+    print("+ : " + pos_prompt_string)
     set_pos_prompt(pos_prompt_string)
+
+    neg_prompt_string = default_neg_prompt
+    if sfw:
+        neg_prompt_string += sfw_extra_neg_prompt
+    print("- : " + neg_prompt_string)
+    set_neg_prompt(neg_prompt_string)
     
     checkpoint_fn = "{}.safetensors".format(checkpoint)
     print(checkpoint_fn)
     set_checkpoint(checkpoint_fn)
 
     output_prefix = "{}_{}".format(prompt_id, checkpoint_id)
+    if sfw:
+        output_prefix += "_sfw"
     print(output_prefix)
     set_output_prefix(output_prefix)
-
 
     expected_fn = "{}_{:05d}_.png".format(output_prefix, 6)
     expected_path = os.path.join(output_dir, expected_fn)
@@ -140,6 +160,7 @@ for checkpoint_data, prompt_data in product(checkpoints, prompts):
         'category': category,
         'prompt': prompt,
         'prompt_id': prompt_id,
+        'sfw': sfw,
         'output_prefix': output_prefix,
     }
     results.append(result_entry)
