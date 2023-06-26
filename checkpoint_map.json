@@ -1,0 +1,277 @@
+{
+  "absrealv10": {
+    "checkpoint": "absolutereality_v10",
+    "checkpoint_name": "AbsoluteReality",
+    "category": "photo"
+  },
+  "analogmadv50": {
+    "checkpoint": "analogMadness_v50",
+    "checkpoint_name": "Analog Madness - Realistic model v5.0",
+    "category": "photo"
+  },
+  "archrealv10": {
+    "checkpoint": "architecturerealmix_v10",
+    "checkpoint_name": "ArchitectureRealMix",
+    "category": "photo"
+  },
+  "azovyaphotov1u": {
+    "checkpoint": "aZovyaPhotoreal_v1Ultra",
+    "checkpoint_name": "A-Zovya Photoreal V1 Ultra",
+    "category": "photo"
+  },
+  "azovyaphotov2": {
+    "checkpoint": "aZovyaPhotoreal_v2",
+    "checkpoint_name": "A-Zovya Photoreal V2",
+    "category": "photo"
+  },
+  "cosplayv20": {
+    "checkpoint": "cosplaymix_v20",
+    "checkpoint_name": "CosplayMix v2.0",
+    "category": "photo"
+  },
+  "cosplayv41": {
+    "checkpoint": "cosplaymix_v41",
+    "checkpoint_name": "CosplayMix v4.1",
+    "category": "photo"
+  },
+  "cyberrealv30": {
+    "checkpoint": "cyberrealistic_v30",
+    "checkpoint_name": "CyberRealistic v3.0",
+    "category": "photo"
+  },
+  "eorv20": {
+    "checkpoint": "edgeOfRealism_eorV20Fp16BakedVAE",
+    "checkpoint_name": "Edge Of Realism v2.0",
+    "category": "photo"
+  },
+  "henmixrealv40": {
+    "checkpoint": "henmixReal_v40",
+    "checkpoint_name": "Henmix_Real v4.0",
+    "category": "photo"
+  },
+  "hrl32": {
+    "checkpoint": "hrl32_hrl32",
+    "checkpoint_name": "HRL v3.2",
+    "category": "photo"
+  },
+  "icbinpv8": {
+    "checkpoint": "icbinpICantBelieveIts_v8",
+    "checkpoint_name": "ICBINP - \"I Can't Believe It's Not Photography\" v8",
+    "category": "photo"
+  },
+  "majicrealv5": {
+    "checkpoint": "majicmixRealistic_v5",
+    "checkpoint_name": "majicMIX realistic v5",
+    "category": "photo"
+  },
+  "majicrealv6": {
+    "checkpoint": "majicmixRealistic_v6",
+    "checkpoint_name": "majicMIX realistic v6",
+    "category": "photo"
+  },
+  "realvisv20": {
+    "checkpoint": "realisticVision_v20",
+    "checkpoint_name": "Realistic Vision v2.0",
+    "category": "photo"
+  },
+  "reliberatev10": {
+    "checkpoint": "reliberate_v10",
+    "checkpoint_name": "Reliberate v1.0",
+    "category": "photo"
+  },
+  "rundifffxv10": {
+    "checkpoint": "rundiffusionFX_v10",
+    "checkpoint_name": "RunDiffusion FX Photorealistic",
+    "category": "photo"
+  },
+  "urpmv13": {
+    "checkpoint": "urpmv13",
+    "checkpoint_name": "Uber Realistic Porn Merge v1.3",
+    "category": "photo"
+  },
+  "azovyarpgv3": {
+    "checkpoint": "aZovyaRPGArtistTools_v3VAE",
+    "checkpoint_name": "A-Zovya RPG Artist Tools v3",
+    "category": "other"
+  },
+  "beenyour11": {
+    "checkpoint": "beenyou_r11",
+    "checkpoint_name": "BeenYou R11",
+    "category": "other"
+  },
+  "colorfulv31": {
+    "checkpoint": "colorful_v31",
+    "checkpoint_name": "Colorful v3.1",
+    "category": "other"
+  },
+  "ddosmixv2": {
+    "checkpoint": "ddosmix_V2",
+    "checkpoint_name": "DDosMix v2",
+    "category": "other"
+  },
+  "deliberatev2": {
+    "checkpoint": "deliberate_v2",
+    "checkpoint_name": "Deliberate v2",
+    "category": "other"
+  },
+  "dreamshaper4": {
+    "checkpoint": "dreamshaper_4BakedVaeFp16",
+    "checkpoint_name": "DreamShaper v4",
+    "category": "other"
+  },
+  "dreamshaper6": {
+    "checkpoint": "dreamshaper_6BakedVae",
+    "checkpoint_name": "DreamShaper v6",
+    "category": "other"
+  },
+  "ghostmixv20": {
+    "checkpoint": "ghostmix_v20Bakedvae",
+    "checkpoint_name": "GhostMix v2.0",
+    "category": "other"
+  },
+  "gameicov30": {
+    "checkpoint": "gameIconInstitute_v30",
+    "checkpoint_name": "Game Icon Institute_mode v3.0",
+    "category": "other"
+  },
+  "lyrielv16": {
+    "checkpoint": "lyriel_v16",
+    "checkpoint_name": "Lyriel v1.6",
+    "category": "other"
+  },
+  "mdjrnyv4": {
+    "checkpoint": "mdjrny-v4",
+    "checkpoint_name": "OpenJourney v4",
+    "category": "other"
+  },
+  "ned": {
+    "checkpoint": "neverendingDreamNED_bakedVae",
+    "checkpoint_name": "NeverEnding Dream v1",
+    "category": "other"
+  },
+  "protogenv22a": {
+    "checkpoint": "protogenV22Anime_22",
+    "checkpoint_name": "Protogen v2.2 (Anime)",
+    "category": "other"
+  },
+  "revanimv121": {
+    "checkpoint": "revAnimated_v121",
+    "checkpoint_name": "ReV Animated v1.2.1",
+    "category": "other"
+  },
+  "rpgv4": {
+    "checkpoint": "rpg_V4",
+    "checkpoint_name": "RPG v4",
+    "category": "other"
+  },
+  "ambgrapev10": {
+    "checkpoint": "ambientgrapemix_v10",
+    "checkpoint_name": "AmbientGrapeMix v1.0",
+    "category": "anime"
+  },
+  "anylora": {
+    "checkpoint": "anyloraCheckpoint_bakedvaeFtmseFp16NOT",
+    "checkpoint_name": "AnyLoRA - Checkpoint",
+    "category": "anime"
+  },
+  "anythingv5": {
+    "checkpoint": "anythingV5PrtRE",
+    "checkpoint_name": "Anything v5",
+    "category": "anime"
+  },
+  "anythingv32ink": {
+    "checkpoint": "AnythingV5Ink_v32Ink",
+    "checkpoint_name": "Anything v3.2 [ink]",
+    "category": "anime"
+  },
+  "aom3": {
+    "checkpoint": "AOM3",
+    "checkpoint_name": "AbyssOrangeMix3",
+    "category": "anime"
+  },
+  "aom3a1": {
+    "checkpoint": "AOM3A1",
+    "checkpoint_name": "AbyssOrangeMix3 A1",
+    "category": "anime"
+  },
+  "aom3a1b": {
+    "checkpoint": "AOM3A1B",
+    "checkpoint_name": "AbyssOrangeMix3 A1B",
+    "category": "anime"
+  },
+  "aom3a2": {
+    "checkpoint": "AOM3A2",
+    "checkpoint_name": "AbyssOrangeMix3 A2",
+    "category": "anime"
+  },
+  "aom3a3": {
+    "checkpoint": "AOM3A3",
+    "checkpoint_name": "AbyssOrangeMix3 A3",
+    "category": "anime"
+  },
+  "breakdomaini2428": {
+    "checkpoint": "breakdomain_I2428",
+    "checkpoint_name": "BreakDomain i2428",
+    "category": "anime"
+  },
+  "cetuswhale": {
+    "checkpoint": "cetusMix_whalefall",
+    "checkpoint_name": "Cetus-Mix WhaleFall",
+    "category": "anime"
+  },
+  "cetusv4": {
+    "checkpoint": "cetusMix_v4",
+    "checkpoint_name": "Cetus-Mix v4",
+    "category": "anime"
+  },
+  "counterfv30": {
+    "checkpoint": "CounterfeitV30_v30",
+    "checkpoint_name": "Counterfeit v3.0",
+    "category": "anime"
+  },
+  "darksushi225d": {
+    "checkpoint": "darkSushiMixMix_225D",
+    "checkpoint_name": "Dark Sushi Mix 2.25D",
+    "category": "anime"
+  },
+  "hassakuv11": {
+    "checkpoint": "hassaku_v11",
+    "checkpoint_name": "Hassaku v1.1",
+    "category": "anime"
+  },
+  "hassakuv12": {
+    "checkpoint": "hassakuHentaiModel_v12",
+    "checkpoint_name": "Hassaku v1.2",
+    "category": "anime"
+  },
+  "grapefruitv41": {
+    "checkpoint": "hm_grapefruitv41",
+    "checkpoint_name": "Grapefruit v4.1",
+    "category": "anime"
+  },
+  "meinav9": {
+    "checkpoint": "meinamix_meinaV9",
+    "checkpoint_name": "MeinaMix v9",
+    "category": "anime"
+  },
+  "meinav10": {
+    "checkpoint": "meinamix_meinaV10",
+    "checkpoint_name": "MeinaMix v10",
+    "category": "anime"
+  },
+  "nyan230303a2": {
+    "checkpoint": "nyanMix_230303Absurd2",
+    "checkpoint_name": "Nyan Mix 230303 Absurd2",
+    "category": "anime"
+  },
+  "nyan230303n": {
+    "checkpoint": "nyanMix_230303Normal",
+    "checkpoint_name": "Nyan Mix 230303 Normal",
+    "category": "anime"
+  },
+  "tmndmixiv": {
+    "checkpoint": "tmndMix_tmndMixIVPruned",
+    "checkpoint_name": "TMND-Mix IV",
+    "category": "anime"
+  }
+}
