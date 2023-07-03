@@ -4,8 +4,9 @@ import os
 import shutil
 import time
 from itertools import product
-from urllib import request, parse
+from urllib import request
 from subprocess import Popen
+from datetime import datetime
 
 output_dir = "C:/dev/ai/ComfyUI/output"
 
@@ -136,23 +137,29 @@ extra_prompt_mapping = {
     "other": ", high quality",
     "photo": ", photo, high quality, 4k",
 }
-sfw_options = [True, False]
+neg_prompt_options = ["none", "default", "sfw"]
 sfw_extra_neg_prompt = ", nsfw, naked, nude"
 default_neg_prompt = get_neg_prompt()
 
 checkpoint_map = {}
 prompt_map = {}
 category_map = { "anime": [], "other": [], "photo": [] }
+gen_img_count = 0
 
-for checkpoint_data, prompt_data, sfw in product(checkpoints, prompts, sfw_options):
+for checkpoint_data, prompt_data, neg_prompt_setting in product(checkpoints, prompts, neg_prompt_options):
     checkpoint, checkpoint_id, category, checkpoint_name, url = checkpoint_data
     prompt, prompt_id = prompt_data
+
+    sfw = neg_prompt_setting == "sfw"
+    no_neg = neg_prompt_setting == "none"
 
     pos_prompt_string = "({}:1.1){}".format(prompt, extra_prompt_mapping[category])
     print("+ : " + pos_prompt_string)
     set_pos_prompt(pos_prompt_string)
 
-    neg_prompt_string = default_neg_prompt
+    neg_prompt_string = ""
+    if not no_neg:
+        neg_prompt_string = default_neg_prompt
     if sfw:
         neg_prompt_string += sfw_extra_neg_prompt
     print("- : " + neg_prompt_string)
@@ -163,6 +170,8 @@ for checkpoint_data, prompt_data, sfw in product(checkpoints, prompts, sfw_optio
     set_checkpoint(checkpoint_fn)
 
     output_prefix = "{}_{}".format(prompt_id, checkpoint_id)
+    if no_neg:
+        output_prefix += "_noneg"
     if sfw:
         output_prefix += "_sfw"
     print(output_prefix)
@@ -194,6 +203,7 @@ for checkpoint_data, prompt_data, sfw in product(checkpoints, prompts, sfw_optio
     if checkpoint_id not in category_map[category]:
         category_map[category].append(checkpoint_id)
 
+    gen_img_count += imgs_per_prompt
     print("-----")
 
 # store the results in JSON files
@@ -203,6 +213,8 @@ with open('prompt_map.json', 'w') as file:
     json.dump(prompt_map, file, indent=2)
 with open('category_map.json', 'w') as file:
     json.dump(category_map, file, indent=2)
+with open('meta_info.json', 'w') as file:
+    json.dump({ "gen_time": datetime.now().isoformat(), "total_imgs": gen_img_count }, file, indent=2)
 
 repo_dir = os.getcwd()
 
