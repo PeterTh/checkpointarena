@@ -69,6 +69,11 @@
     "checkpoint_name": "majicMIX realistic v6",
     "category": "photo"
   },
+  "photonv1": {
+    "checkpoint": "photon_v1",
+    "checkpoint_name": "Photon v1",
+    "category": "photo"
+  },
   "realvisv20": {
     "checkpoint": "realisticVision_v20",
     "checkpoint_name": "Realistic Vision v2.0",
@@ -257,6 +262,11 @@
   "meinav10": {
     "checkpoint": "meinamix_meinaV10",
     "checkpoint_name": "MeinaMix v10",
+    "category": "anime"
+  },
+  "mistoonav2": {
+    "checkpoint": "mistoonAnime_v20",
+    "checkpoint_name": "Mistoon_Anime v2",
     "category": "anime"
   },
   "nyan230303a2": {
